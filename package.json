@@ -1,0 +1,56 @@
+{
+  "name": "maf-template",
+  "version": "0.0.0",
+  "description": "maf template",
+  "main": "index.js",
+  "scripts": {
+    "link_maf": "rm -rf ./node_modules/maf && ln -s ../../maf/package node_modules/maf",
+    "config": "node ./config.default.js",
+    "clean": "rm -rf ./esdoc ./coverage",
+    "docs:open": "npm run docs && open ./esdoc/index.html",
+    "docs": "rm -rf ./esdoc && ./node_modules/.bin/esdoc ./ -c ./.esdoc.json",
+    "tests": "./node_modules/.bin/mocha ./test/",
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha ./test/",
+    "lint": "./node_modules/.bin/eslint -c .eslintrc.js api init models rest",
+    "lint:fix": "./node_modules/.bin/eslint -c .eslintrc.js --fix  api init models rest"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alekzonder/maf-template.git"
+  },
+  "keywords": [],
+  "author": "alekzonder <alekzonder@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": null
+  },
+  "homepage": null,
+  "dependencies": {
+    "joi": "^10.0.2",
+    "lodash": "^4.16.4",
+    "maf": "^0.5.0",
+    "md5": "^2.2.1",
+    "moment": "^2.15.1",
+    "mongodb": "^2.2.10",
+    "nprof": "^0.6.0",
+    "repl-extra": "^0.1.3",
+    "terror": "^1.3.0",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "chai-json-schema": "^1.4.0",
+    "codeclimate-test-reporter": "^0.4.0",
+    "esdoc": "^0.4.8",
+    "esdoc-node": "^1.0.0",
+    "eslint": "^3.11.1",
+    "istanbul": "^0.4.4",
+    "mocha": "^3.2.0"
+  }
+}
