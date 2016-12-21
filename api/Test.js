@@ -4,11 +4,12 @@ var Abstract = require('./Abstract');
 
 class Test extends Abstract {
 
-    find () {
+    find (filters, fields) {
 
         return new Promise((resolve, reject) => {
 
-            this._models.test.find().exec()
+            this._models.test.find(filters, fields)
+                .exec()
                 .then((result) => {
                     resolve(result);
                 })

@@ -1,6 +1,8 @@
 var joi = require('joi');
 var _ = require('lodash');
 
+var helpers = require('maf/Rest/helpers');
+
 module.exports = {
 
     resource: '/test',
@@ -16,7 +18,7 @@ module.exports = {
                 query: {
                     limit: joi.number().default(10).min(0).max(100),
                     offset: joi.number().default(0).min(0).max(100),
-                    fields: joi.alternatives().try(joi.array().items(joi.string()), joi.string()).default(null)
+                    fields: helpers.fields.schema
                 }
             },
 
@@ -24,14 +26,8 @@ module.exports = {
                 var logger = req.di.logger;
                 var api = req.di.api;
 
-                var filters = {},
-                    fields = null;
-
-                // if (typeof req.query.fields === 'string') {
-                //     fields = _.map(req.query.fields.split(','), v => _.trim(v));
-                // } else if (Array.isArray(req.query.fields)) {
-                //     fields = req.query.fields;
-                // }
+                var filters = {};
+                var fields = helpers.fields.get(req.query, 'fields');
 
                 if (typeof req.query.active !== 'undefined') {
                     filters.active = req.query.active;
@@ -52,10 +48,6 @@ module.exports = {
                         res.result(result.docs, metadata);
                     })
                     .catch((error) => {
-                        var ec = {
-                            checks: api.test.ErrorCodes
-                        };
-
                         if (!error.checkable) {
                             return res.logServerError(error);
                         }

@@ -39,15 +39,6 @@ init.config(logger)
         app.listen(port, host, function () {
             logger.info(`listen on ${host}:${port}`);
         });
-
-        // for (var layer of app._router.stack) {
-        //     if (!layer.route || !layer.route.path) {
-        //         continue;
-        //     }
-        //
-        //     console.log(layer.route.path, Object.keys(layer.route.methods));
-        // }
-
     })
     .catch((error) => {
         logger.fatal(error);
