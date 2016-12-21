@@ -4,7 +4,7 @@ var config = {
     host: 'localhost',
     port: 8082,
 
-    logLevel: 'INFO',
+    logLevel: 'TRACE',
 
     db: {
         dsl: 'mongodb://localhost:27017/maf-template'

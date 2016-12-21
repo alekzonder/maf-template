@@ -7,10 +7,14 @@ class Test extends Abstract {
     find () {
 
         return new Promise((resolve, reject) => {
-            resolve({
-                total: 3,
-                docs: [1, 2, 3]
-            });
+
+            this._models.test.find().exec()
+                .then((result) => {
+                    resolve(result);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
         });
 
     }

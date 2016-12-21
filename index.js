@@ -1,63 +1,52 @@
 var path = require('path');
 
-var logger = require('maf/Service/Logger')('mazaid-rest-checks');
+var logger = require('maf/Service/Logger')('maf-template');
 
-process.on('unhandledRejection', (error) => {
-    logger.fatal(error);
-});
+var init = {
+    config: require(path.join(__dirname, '/init/config')),
+    di: require(path.join(__dirname, '/init/di')),
+    rest: require(path.join(__dirname, '/init/rest'))
+};
 
-require(path.join(__dirname, '/init/config'))(logger)
+init.config(logger)
     .then((config) => {
-        return require('./init/di')(logger, config);
+        logger.setLevel(config.get('logLevel'));
+        return init.di(logger, config);
     })
     .then((di) => {
 
         var appConfig = {
             bodyParser: {
                 urlencoded: true
+            },
+            requestDebug: {
+                initDiFn: init.di
             }
         };
 
         var app = require('maf/Service/Application')(di, appConfig);
 
-        require('nprof/express/register')(di.logger, app, di.config.nprof);
-
-        // if _debug
-        app.use((req, res, next) => {
-
-            res._startTime = new Date().getTime();
-
-            if (req._debug === true) {
-
-                require(path.join(__dirname, '/init/di'))(logger, di.config, di)
-                    .then((di) => {
-                        req.di = di;
-                        next();
-                    })
-                    .catch((error) => {
-                        logger.error(error);
-                        res.serverError();
-                        next();
-                    });
-
-                return;
-
-            } else {
-                req.di = di;
-                next();
-            }
-        });
-
-        return require(path.join(__dirname, '/init/rest'))(logger, app, di);
+        return init.rest(logger, app, di);
 
     })
     .then((app) => {
 
         var config = app.di.config;
 
-        app.listen(config.port, config.host, function () {
-            logger.info(`listen on ${config.host}:${config.port}`);
+        var host = config.get('host');
+        var port = config.get('port');
+
+        app.listen(port, host, function () {
+            logger.info(`listen on ${host}:${port}`);
         });
+
+        // for (var layer of app._router.stack) {
+        //     if (!layer.route || !layer.route.path) {
+        //         continue;
+        //     }
+        //
+        //     console.log(layer.route.path, Object.keys(layer.route.methods));
+        // }
 
     })
     .catch((error) => {

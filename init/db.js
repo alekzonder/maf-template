@@ -1,16 +1,10 @@
-// var Engine = require('tingodb')();
 var MongoClient = require('mongodb').MongoClient;
 
-module.exports = (config, di, db) => {
+module.exports = (config, di) => {
 
     return new Promise((resolve, reject) => {
 
-        if (db) {
-            di.setConnection('db', db);
-            return resolve(db);
-        }
-
-        MongoClient.connect(config.db.dsl)
+        MongoClient.connect(config.get('db.dsl'))
         .then((db) => {
 
             // var Logger = require('mongodb').Logger;

@@ -8,12 +8,6 @@ module.exports = function (logger) {
 
         var options = {
             configPath: '/data/etc/maf-template/config.json',
-
-            consul: {
-                key: 'services/maf-template',
-                timeout: 1000
-            },
-
             schema: configSchema
         };
 
@@ -21,9 +15,8 @@ module.exports = function (logger) {
 
         config.load()
             .then(() => {
-                var configObject = config.toObject();
-                logger.debug('got config', configObject);
-                resolve(configObject);
+                logger.debug('got config', config.toObject());
+                resolve(config);
             })
             .catch((error) => {
                 reject(error);

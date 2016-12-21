@@ -9,7 +9,7 @@ module.exports = (config, models, di) => {
 
         var api = {};
 
-        api.test = new A.Test({}, models, api);
+        api.test = new A.Test(models, api);
         api.rest = new A.RestApiClient();
 
         for (var name in api) {
