@@ -3,13 +3,15 @@ module.exports = (config, models, di) => {
     return new Promise((resolve, reject) => {
 
         var A = {
-            Test: require('./Test'),
+            Lists: require('./Lists'),
+            Tasks: require('./Tasks'),
             RestApiClient: require('maf/Rest/Client'),
         };
 
         var api = {};
 
-        api.test = new A.Test(models, api);
+        api.lists = new A.Lists(models, api);
+        api.tasks = new A.Tasks(models, api);
         api.rest = new A.RestApiClient();
 
         for (var name in api) {

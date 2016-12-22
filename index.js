@@ -1,3 +1,6 @@
+require('maf/vendors/trace');
+require('maf/vendors/clarify');
+
 var path = require('path');
 
 var logger = require('maf/Service/Logger')('maf-template');
@@ -30,6 +33,8 @@ init.config(logger)
 
     })
     .then((app) => {
+
+        app.use(require('maf/express/resource-not-found')());
 
         var config = app.di.config;
 

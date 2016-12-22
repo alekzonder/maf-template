@@ -2,12 +2,12 @@
 
 var Abstract = require('./Abstract');
 
-class Test extends Abstract {
+class Tasks extends Abstract {
 
     constructor (db) {
         super(db);
 
-        this._collectionName = 'test';
+        this._collectionName = 'tasks';
 
         this._indexes = [
             {
@@ -25,4 +25,4 @@ class Test extends Abstract {
 
 }
 
-module.exports = Test;
+module.exports = Tasks;

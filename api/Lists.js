@@ -4,18 +4,25 @@ var joi = require('maf/vendors/joi');
 
 var CrudAbstract = require('maf/Api/CrudAbstract');
 
-class Test extends CrudAbstract {
+class Lists extends CrudAbstract {
 
     constructor (models, api) {
         super(models, api);
 
-        this._modelName = 'test';
+        this._modelName = 'lists';
 
-        this._setEntityName('test');
+        this._setEntityName('list');
+
+        this.Error.MESSAGES.ALREADY_EXISTS = 'list already exists';
 
         this._creationSchema = joi.object().keys({
             name: joi.string().required(),
             title: joi.string().required()
+        });
+
+        this._modificationSchema = joi.object().keys({
+            name: joi.string(),
+            title: joi.string()
         });
     }
 
@@ -37,4 +44,4 @@ class Test extends CrudAbstract {
 
 }
 
-module.exports = Test;
+module.exports = Lists;

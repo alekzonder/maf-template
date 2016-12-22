@@ -7,11 +7,13 @@ module.exports = (config, di) => {
         var db = di.getConnection('db');
 
         var M = {
-            Test: require('./Test')
+            Lists: require('./Lists'),
+            Tasks: require('./Tasks')
         };
 
         var models = {
-            test: new M.Test(db)
+            lists: new M.Lists(db),
+            tasks: new M.Tasks(db)
         };
 
         _.each(models, (model) => {

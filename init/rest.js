@@ -1,7 +1,7 @@
 var path = require('path');
 
-var _ = require('lodash');
-var joi = require('joi');
+var _ = require('maf/vendors/lodash');
+var joi = require('maf/vendors/joi');
 
 var Rest = require('maf/Rest');
 
