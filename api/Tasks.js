@@ -22,7 +22,7 @@ class Tasks extends CrudAbstract {
         });
 
         this._modificationSchema = joi.object().keys({
-            name: joi.string().required(),
+            name: joi.string(),
             title: joi.string(),
             done: joi.boolean()
         });

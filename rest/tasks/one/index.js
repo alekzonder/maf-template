@@ -5,6 +5,7 @@ module.exports = {
     title: 'tasks',
 
     methods: {
-        GET: require('./GET')
+        GET: require('./GET'),
+        PATCH: require('./PATCH')
     }
 };

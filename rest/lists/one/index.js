@@ -5,7 +5,7 @@ module.exports = {
     title: 'lists',
 
     methods: {
-
-        GET: require('./GET')
+        GET: require('./GET'),
+        PATCH: require('./PATCH')
     }
 };

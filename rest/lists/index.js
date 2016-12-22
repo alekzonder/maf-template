@@ -1,4 +1,4 @@
 module.exports = [
-    require('./one'),
-    require('./many')
+    require('./many'),
+    require('./one')
 ];
