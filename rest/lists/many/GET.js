@@ -16,14 +16,13 @@ module.exports = {
     callback: function (req, res) {
         var lists = req.di.api.lists;
 
-        var filters = {};
+        var filters = helpers.filters.get(req.query, []);
         var fields = helpers.fields.get(req.query, 'fields');
 
-        if (typeof req.query.active !== 'undefined') {
-            filters.active = req.query.active;
-        }
-
-        lists.find(filters, fields).exec()
+        lists.find(filters, fields)
+            .limit(req.query.limit)
+            .skip(req.query.offset)
+            .exec()
             .then((result) => {
                 res.result(helpers.findResult(result, req.query, lists));
             })
