@@ -2,7 +2,7 @@
 
 var joi = require('maf/vendors/joi');
 
-var CrudAbstract = require('maf/Api/CrudAbstract');
+var CrudAbstract = require('maf/Api/Abstract');
 
 class Tasks extends CrudAbstract {
 
