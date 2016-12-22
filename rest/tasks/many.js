@@ -23,8 +23,7 @@ module.exports = {
             },
 
             callback: function (req, res) {
-                var logger = req.di.logger;
-                var api = req.di.api;
+                var tasks = req.di.api.tasks;
 
                 var filters = {};
                 var fields = helpers.fields.get(req.query, 'fields');
@@ -33,9 +32,9 @@ module.exports = {
                     filters.active = req.query.active;
                 }
 
-                api.tasks.find(filters, fields)
+                tasks.find(filters, fields).exec()
                     .then((result) => {
-                        res.result(helpers.findResult(result, req.query, api.test));
+                        res.result(helpers.findResult(result, req.query, tasks));
                     })
                     .catch((error) => {
                         if (!error.checkable) {
