@@ -1,6 +1,6 @@
 'use strict';
 
-var Abstract = require('./Abstract');
+var Abstract = require('maf/Model/Mongodb');
 
 class Tasks extends Abstract {
 
@@ -9,18 +9,7 @@ class Tasks extends Abstract {
 
         this._collectionName = 'tasks';
 
-        this._indexes = [
-            {
-                fields: {
-                    name: 1
-                },
-                options: {
-                    name: 'name',
-                    unique: true,
-                    background: true
-                }
-            }
-        ];
+        this._indexes = [];
     }
 
 }

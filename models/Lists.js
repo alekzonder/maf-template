@@ -1,6 +1,6 @@
 'use strict';
 
-var Abstract = require('./Abstract');
+var Abstract = require('maf/Model/Mongodb');
 
 class Lists extends Abstract {
 
