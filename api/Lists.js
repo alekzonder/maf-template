@@ -2,9 +2,9 @@
 
 var joi = require('maf/vendors/joi');
 
-var CrudAbstract = require('maf/Api/Abstract');
+var Abstract = require('maf/Api/Abstract');
 
-class Lists extends CrudAbstract {
+class Lists extends Abstract {
 
     constructor (models, api) {
         super(models, api);
