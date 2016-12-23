@@ -1,7 +1,6 @@
 var path = require('path');
 
 var _ = require('maf/vendors/lodash');
-var joi = require('maf/vendors/joi');
 
 var Rest = require('maf/Rest');
 
@@ -11,7 +10,7 @@ module.exports = function (logger, app, di) {
 
         var restConfig = {
             baseUrl: '/',
-            title: 'test REST API',
+            title: 'maf-template REST API',
             description: ''
         };
 

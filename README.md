@@ -1,0 +1,6 @@
+# maf-template
+
+
+# LICENSE
+
+MIT
