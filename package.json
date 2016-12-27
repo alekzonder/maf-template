@@ -1,7 +1,7 @@
 {
   "name": "maf-template",
   "version": "0.0.0",
-  "description": "maf template",
+  "description": "maf-template",
   "main": "index.js",
   "scripts": {
     "link_maf": "rm -rf ./node_modules/maf && ln -s ../../maf/package node_modules/maf",
