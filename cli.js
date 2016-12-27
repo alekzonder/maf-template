@@ -1,4 +1,4 @@
-var logger = require('maf/Service/Logger')('maf-cli');
+var logger = require('maf/Service/Logger')('maf-template-cli');
 
 var initCli = require('maf/Service/Init/Cli');
 
