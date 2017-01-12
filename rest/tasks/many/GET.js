@@ -32,7 +32,7 @@ module.exports = {
                     return res.logServerError(error);
                 }
 
-                error.checkChain(res.logServerError)
+                error.getCheckChain(res.logServerError)
                     .check();
             });
     }
