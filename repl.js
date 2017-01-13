@@ -1,13 +1,13 @@
-var logger = require('maf/Service/Logger')('maf-template-cli');
+var logger = require('maf/Service/Logger')('maf-template-repl');
 
-var initCli = require('maf/Service/Init/Cli');
+var initRepl = require('maf/Service/Init/Repl');
 
 var init = {
     config: require('./init/config'),
     di: require('./init/di')
 };
 
-initCli(logger, init)
+initRepl(logger, init)
     .then(() => {
         logger.debug('repl started');
     })
