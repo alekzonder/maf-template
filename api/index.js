@@ -7,14 +7,27 @@ module.exports = (config, models, di) => {
         var apiClasses = {
             lists: require('./Lists'),
             tasks: require('./Tasks'),
+            test: require('./Test'),
             rest: require('maf/Rest/Client'),
         };
 
-        var createFn = function (di, ApiClass) {
-            return new ApiClass(di.models, di.api);
+        var createFunctions = {
+
+            test: function (di, ApiClass) {
+                return new ApiClass({some: 'custom data'});
+            },
+
+            default: function (di, ApiClass) {
+                return new ApiClass(di.models, di.api);
+            }
         };
 
-        createApiCollection(di, apiClasses, createFn)
+        // old style init createFunctionss
+        // var createFunctions = function (di, ApiClass) {
+        //     return new ApiClass(di.models, di.api);
+        // };
+
+        createApiCollection(di, apiClasses, createFunctions)
             .then((api) => {
                 resolve(api);
             })

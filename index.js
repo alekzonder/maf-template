@@ -6,6 +6,8 @@ var path = require('path');
 
 var logger = require('maf/Service/Logger')('maf-template');
 
+require('maf/init/errorHandlers')(logger);
+
 var init = {
     config: require(path.join(__dirname, '/init/config')),
     di: require(path.join(__dirname, '/init/di')),
