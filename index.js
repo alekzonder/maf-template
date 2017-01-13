@@ -1,5 +1,6 @@
-require('maf/vendors/trace');
-require('maf/vendors/clarify');
+// huge RAM usage
+// require('maf/vendors/trace');
+// require('maf/vendors/clarify');
 
 var path = require('path');
 
